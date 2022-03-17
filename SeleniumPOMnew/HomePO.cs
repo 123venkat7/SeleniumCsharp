@@ -1,11 +1,16 @@
 ﻿using OpenQA.Selenium;
 using SeleniumExtras.PageObjects;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace SeleniumPOM.Pages
+namespace SeleniumPOM
 {
-    public class HomePage
+    internal class HomePO
     {
-        public HomePage()
+        public HomePO()
         {
             PageFactory.InitElements(WebD.Driver, this);
         }
@@ -13,7 +18,7 @@ namespace SeleniumPOM.Pages
         [FindsBy(How = How.Name, Using = "Initial")]
         public IWebElement TxtInitial { get; set; }
 
-        [FindsBy(How =How.Name,Using = "FirstName")]
+        [FindsBy(How = How.Name, Using = "FirstName")]
         public IWebElement TxtFirstName { get; set; }
 
         [FindsBy(How = How.XPath, Using = "//input[@value='female']")]
@@ -22,12 +27,12 @@ namespace SeleniumPOM.Pages
         [FindsBy(How = How.XPath, Using = "//input[@value='Save']")]
         public IWebElement BtnSave { get; set; }
 
-        public void CaptureUserForm(string initial, string fName)
+        public void CaptureForm(string initial, string fName)
         {
-            TxtInitial.SendKeys(initial);
-            TxtFirstName.SendKeys(fName);
-            RdGenger.Click();
-            BtnSave.Submit();
+            TxtInitial.EnterText(initial);
+            TxtFirstName.EnterText(fName);
+            RdGenger.Clicks();
+            BtnSave.Clicks();
         }
     }
 }

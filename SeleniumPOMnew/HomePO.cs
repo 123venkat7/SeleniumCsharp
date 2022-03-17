@@ -10,10 +10,8 @@ namespace SeleniumPOM
 {
     internal class HomePO
     {
-        public HomePO()
-        {
-            PageFactory.InitElements(WebD.Driver, this);
-        }
+        // Default Constructor initializing the elements in this(HomePO) Page using PageFactory class. 
+        public HomePO() => PageFactory.InitElements(WebD.Driver, this);
 
         [FindsBy(How = How.Name, Using = "Initial")]
         public IWebElement TxtInitial { get; set; }
@@ -27,6 +25,7 @@ namespace SeleniumPOM
         [FindsBy(How = How.XPath, Using = "//input[@value='Save']")]
         public IWebElement BtnSave { get; set; }
 
+        // Method to capture the userform 
         public void CaptureForm(string initial, string fName)
         {
             TxtInitial.EnterText(initial);

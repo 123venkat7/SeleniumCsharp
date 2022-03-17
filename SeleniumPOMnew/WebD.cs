@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SeleniumPOM
 {
-    internal static  class WebD
+    internal static class WebD
     {
         public static IWebDriver Driver { get; set; }
     }

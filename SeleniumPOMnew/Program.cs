@@ -1,18 +1,12 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium.Chrome;
-using SeleniumExtras.PageObjects;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using WebDriverManager;
 using WebDriverManager.DriverConfigs.Impl;
 
 namespace SeleniumPOM
 {
     internal class Program
-    {
+    { 
         static void Main(string[] args)
         {
         }
@@ -20,7 +14,11 @@ namespace SeleniumPOM
         [SetUp]
         public void SetUp()
         {
+            // Handling webdriver through DriverManager. 
             new DriverManager().SetUpDriver(new ChromeConfig());
+
+            // Assigning the instance of ChromeDriver to Driver property. 
+            // Initializing URL using the default Url property 
             WebD.Driver = new ChromeDriver() { Url = "https://demosite.executeautomation.com/Login.html" };
         }
       
@@ -28,17 +26,17 @@ namespace SeleniumPOM
         [Test]
         public void Login()
         {
+            // Creating object to the LoginPO. 
             LoginPO lp = new LoginPO();
-            //PageFactory.InitElements(WebD.Driver, lp);
             lp.EnterCred("Admin", "password");
+            
+            // Assigning object reference for the HomePO instance returned from ClickLogin() method. 
             HomePO hp = lp.ClickLogin();
-            //PageFactory.InitElements(WebD.Driver, hp);
             hp.CaptureForm("C", "S");
         }
-        [TearDown]
-        public void TearDown()
-        {
 
-        }
+        [TearDown]
+        // Using Lambda expression to quit the webdriver insances in TearDown method. 
+        public void TearDown() => WebD.Driver.Quit();
     }
 }

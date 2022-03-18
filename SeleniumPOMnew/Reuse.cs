@@ -6,9 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SeleniumPOM
+namespace SeleniumPOMnew
 {
-    internal static class Utils
+    internal static class Reuse
     {
         /// <summary>
         /// Custom extension method clear and enters specified value into a inputbox webelement 
